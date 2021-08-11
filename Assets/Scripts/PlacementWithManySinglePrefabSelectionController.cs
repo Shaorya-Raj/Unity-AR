@@ -15,6 +15,10 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     [SerializeField]
     private Button dismissButton;
 
+    //remove object
+    [SerializeField]
+    private Button removeObject;
+
     [SerializeField]
     private Camera arCamera;
 
@@ -61,6 +65,12 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         arRaycastManager = GetComponent<ARRaycastManager>();
         dismissButton.onClick.AddListener(Dismiss);
         scaleSlider.onValueChanged.AddListener(ScaleChanged);
+        removeObject.onClick.AddListener(RemoveObject);
+    }
+
+    public void RemoveObject()
+    {
+        Destroy(lastSelectedObject);              
     }
 
     private void Dismiss() => welcomePanel.SetActive(false);
