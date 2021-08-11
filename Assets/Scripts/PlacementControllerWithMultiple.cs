@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -68,7 +68,7 @@ public class PlacementControllerWithMultiple : MonoBehaviour
             break;
         }
     }
-
+/*
     //get the position where the object will be placed when screen is tapped
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
@@ -103,4 +103,5 @@ public class PlacementControllerWithMultiple : MonoBehaviour
 
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
-}
+    
+}*/

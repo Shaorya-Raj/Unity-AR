@@ -6,6 +6,21 @@ using UnityEngine.XR.ARFoundation;
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 {
+
+//new additions
+    [SerializeField]
+    private Button arGreenButton;
+
+    [SerializeField]
+    private Button arRedButton;
+
+    [SerializeField]
+    private Button arBlueButton;
+
+    [SerializeField]
+    private Text selectionText;
+//new additions
+
     [SerializeField]
     private GameObject placedPrefab;
 
@@ -63,6 +78,13 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     public void Awake() 
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
+//new additions
+        ChangePrefabTo("Leo");
+
+        arGreenButton.onClick.AddListener(() => ChangePrefabTo("Leo"));
+        arBlueButton.onClick.AddListener(() => ChangePrefabTo("Typhoon"));
+        arRedButton.onClick.AddListener(() => ChangePrefabTo("Apache"));
+//new additions
         dismissButton.onClick.AddListener(Dismiss);
         scaleSlider.onValueChanged.AddListener(ScaleChanged);
         removeObject.onClick.AddListener(RemoveObject);
@@ -70,8 +92,33 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     public void RemoveObject()
     {
-        Destroy(lastSelectedObject);              
+        Destroy(placedObject);              
     }
+
+//new additons
+    public void ChangePrefabTo(string prefabName)
+    {
+        placedPrefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
+
+        if(placedPrefab == null)
+        {
+            Debug.LogError($"Prefab with name {prefabName} could not be loaded, make sure you check the naming of your prefabs...");
+        }
+        
+        switch(prefabName)
+        {
+            case "Typhoon":
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
+            break;
+            case "Apache":
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
+            break;
+            case "Leo":
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
+            break;
+        }
+    }
+//new additons
 
     private void Dismiss() => welcomePanel.SetActive(false);
 
@@ -80,7 +127,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         if(applyScalingPerObject){
             if(lastSelectedObject != null && lastSelectedObject.Selected)
             {
-                lastSelectedObject.transform.parent.localScale = Vector3.one * newValue;
+                placedPrefab.transform.parent.localScale = Vector3.one * newValue;
             }
         }
         else 
@@ -89,7 +136,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         scaleTextValue.text = $"Scale {newValue}";
     }
 
-    public void Update()
+    void Update()
     {
         // do not capture events unless the welcome panel is hidden
         if(welcomePanel.activeSelf)
