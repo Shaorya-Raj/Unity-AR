@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//to create a bounding area around an object to know that it is selected
+
 [RequireComponent(typeof(PlacementObject))]
 public class PlacementBoundingArea : MonoBehaviour
 {

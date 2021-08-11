@@ -18,6 +18,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     [SerializeField]
     private Camera arCamera;
 
+    //to scale the object
     [SerializeField]
     private bool applyScalingPerObject = false;
 

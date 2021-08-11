@@ -32,7 +32,7 @@ public class PlacementControllerWithMultiple : MonoBehaviour
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
 
-        // set initial prefab
+        // set initial prefab, change buttons to dropdown menu later
         ChangePrefabTo("Leo");
 
         arGreenButton.onClick.AddListener(() => ChangePrefabTo("Leo"));
@@ -41,8 +41,11 @@ public class PlacementControllerWithMultiple : MonoBehaviour
         dismissButton.onClick.AddListener(Dismiss);
     }
 
+
+    //removes welcome panel so objects can be placed
     private void Dismiss() => welcomePanel.SetActive(false);
 
+    //change the selected model to be displayed on screen
     public void ChangePrefabTo(string prefabName)
     {
         placedPrefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
@@ -55,17 +58,18 @@ public class PlacementControllerWithMultiple : MonoBehaviour
         switch(prefabName)
         {
             case "Typhoon":
-                selectionText.text = $"Selected: <color='blue'>{prefabName}</color>";
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
             break;
             case "Apache":
-                selectionText.text = $"Selected: <color='red'>{prefabName}</color>";
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
             break;
             case "Leo":
-                selectionText.text = $"Selected: <color='green'>{prefabName}</color>";
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
             break;
         }
     }
 
+    //get the position where the object will be placed when screen is tapped
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
         if(Input.touchCount > 0)
@@ -89,6 +93,7 @@ public class PlacementControllerWithMultiple : MonoBehaviour
         if(!TryGetTouchPosition(out Vector2 touchPosition))
             return;
 
+        //place object
         if(arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
         {
             var hitPose = hits[0].pose;

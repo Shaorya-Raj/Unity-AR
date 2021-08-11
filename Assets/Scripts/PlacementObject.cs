@@ -33,6 +33,7 @@ public class PlacementObject : MonoBehaviour
         }
     }
 
+    //used to display object details and name
     [SerializeField]
     private TextMeshPro OverlayText;
 

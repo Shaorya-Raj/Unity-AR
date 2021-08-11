@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-
+//toggles the plane to place objects
 [RequireComponent(typeof(ARPlaneManager))]
 public class PlaneDetectionToggle : MonoBehaviour
 {
