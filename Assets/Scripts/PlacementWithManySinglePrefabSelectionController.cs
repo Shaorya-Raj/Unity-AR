@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+using UnityEngine.EventSystems;
+
 
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
@@ -41,11 +44,11 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     [SerializeField]
     private bool applyScalingPerObject = false;
 
-    [SerializeField]
-    private Slider scaleSlider;
+    //[SerializeField]
+    //private Slider scaleSlider;
 
-    [SerializeField]
-    private Text scaleTextValue;
+    //[SerializeField]
+    //private Text scaleTextValue;
 
 
     private GameObject placedObject;
@@ -86,7 +89,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         arRedButton.onClick.AddListener(() => ChangePrefabTo("Apache"));
 //new additions
         dismissButton.onClick.AddListener(Dismiss);
-        scaleSlider.onValueChanged.AddListener(ScaleChanged);
+        //scaleSlider.onValueChanged.AddListener(ScaleChanged);
         removeObject.onClick.AddListener(RemoveObject);
     }
 
@@ -122,19 +125,21 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     private void Dismiss() => welcomePanel.SetActive(false);
 
-    public void ScaleChanged(float newValue)
+    /*public void ScaleChanged(float value)
     {
+        float newValue = scaleSlider.value;
+
         if(applyScalingPerObject){
             if(lastSelectedObject != null && lastSelectedObject.Selected)
             {
-                placedPrefab.transform.parent.localScale = Vector3.one * newValue;
+                placedPrefab.transform.parent.localScale = new Vector3(newValue,newValue,newValue); //Vector3.one * newValue;
             }
         }
         else 
-            aRSessionOrigin.transform.localScale = Vector3.one * newValue;
+            aRSessionOrigin.transform.localScale = new Vector3(newValue,newValue,newValue);
 
         scaleTextValue.text = $"Scale {newValue}";
-    }
+    }*/
 
     void Update()
     {
@@ -145,6 +150,9 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         if(Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+
+            if(EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                return;
             
             touchPosition = touch.position;
 

@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 3338969889831899184}
   - component: {fileID: 6617626160172069796}
   - component: {fileID: 6811143375010300361}
+  - component: {fileID: 570051301856787049}
+  - component: {fileID: 8529900196900497340}
+  - component: {fileID: 4112331474194064831}
   m_Layer: 0
   m_Name: Leo
   m_TagString: Untagged
@@ -119,9 +122,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71300d6c1f5dcd247ba75a25323c26c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundingRadius: 0.91
+  boundingRadius: 1.5
   boundingAreaPosition: {x: 0, y: 0.56, z: 0}
   boundingAreaMaterial: {fileID: 0}
+--- !u!114 &570051301856787049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809053706042538833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520bb47c46cf8624fafb307b7d1b862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
+--- !u!114 &8529900196900497340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809053706042538833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RaycastPrefab: {fileID: 0}
+--- !u!114 &4112331474194064831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809053706042538833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f840844b83b1d064795e20fa9d38a6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMinValue: 0.025
+  scaleMaxValue: 0.075
+  rotMinValue: 0
+  rotMaxValue: 360
 --- !u!1 &5283199320616567688
 GameObject:
   m_ObjectHideFlags: 0
