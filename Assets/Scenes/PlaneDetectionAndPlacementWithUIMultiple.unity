@@ -1312,7 +1312,6 @@ MonoBehaviour:
   dismissButton: {fileID: 240355835}
   removeObject: {fileID: 193494784}
   arCamera: {fileID: 1737330649}
-  applyScalingPerObject: 1
 --- !u!114 &758132668
 MonoBehaviour:
   m_ObjectHideFlags: 0

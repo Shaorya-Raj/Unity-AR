@@ -41,8 +41,8 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     private Camera arCamera;
 
     //to scale the object
-    [SerializeField]
-    private bool applyScalingPerObject = false;
+    //[SerializeField]
+    //private bool applyScalingPerObject = false;
 
     //[SerializeField]
     //private Slider scaleSlider;
@@ -95,7 +95,12 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     public void RemoveObject()
     {
-        Destroy(placedObject);              
+
+        foreach (GameObject placedObject in Object.FindObjectsOfType<GameObject>()) 
+        {
+            /*Destroy(placedObject);*/
+            placedObject.GetComponent<Renderer>().enabled = false;
+        }             
     }
 
 //new additons
@@ -138,7 +143,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         else 
             aRSessionOrigin.transform.localScale = new Vector3(newValue,newValue,newValue);
 
-        scaleTextValue.text = $"Scale {newValue}";
+       // scaleTextValue.text = $"Scale {newValue}";
     }*/
 
     void Update()
@@ -176,27 +181,27 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
                         }
                     }
                 }
-                if(arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
+                if(arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
                 {
                     Pose hitPose = hits[0].pose;
 
                     if(lastSelectedObject == null)
                     {
-                        lastSelectedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation).GetComponent<PlacementObject>();
+                        placedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation)/*.GetComponent<PlacementObject>()*/;
                     }
                 }
             }  
 
             if(touch.phase == TouchPhase.Moved)
             {
-                if(arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
+                if(arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
                 {
                     Pose hitPose = hits[0].pose;
 
                     if(lastSelectedObject != null && lastSelectedObject.Selected)
                     {
-                        lastSelectedObject.transform.parent.position = hitPose.position;
-                        lastSelectedObject.transform.parent.rotation = hitPose.rotation;
+                        placedObject.transform.parent.position = hitPose.position;
+                        placedObject.transform.parent.rotation = hitPose.rotation;
                     }
                 }
             }
