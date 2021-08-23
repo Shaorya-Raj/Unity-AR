@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.EventSystems;
+using TMPro;
 
 
 [RequireComponent(typeof(ARRaycastManager))]
@@ -39,6 +40,9 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     [SerializeField]
     private Camera arCamera;
+
+    [SerializeField]
+    public TMPro.TMP_Dropdown myDrop;
 
     //to scale the object
     //[SerializeField]
@@ -82,15 +86,55 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
 //new additions
-        ChangePrefabTo("Leo");
+        //ChangePrefabTo("Leo");
 
-        arGreenButton.onClick.AddListener(() => ChangePrefabTo("Leo"));
-        arBlueButton.onClick.AddListener(() => ChangePrefabTo("Typhoon"));
-        arRedButton.onClick.AddListener(() => ChangePrefabTo("Apache"));
+        myDrop.onValueChanged.AddListener(delegate{PrefabChange(myDrop);});
+
+        //arGreenButton.onClick.AddListener(() => ChangePrefabTo("Leo"));
+        //arBlueButton.onClick.AddListener(() => ChangePrefabTo("Typhoon"));
+        //arRedButton.onClick.AddListener(() => ChangePrefabTo("Apache"));
 //new additions
         dismissButton.onClick.AddListener(Dismiss);
         //scaleSlider.onValueChanged.AddListener(ScaleChanged);
         removeObject.onClick.AddListener(RemoveObject);
+    }
+
+    public void PrefabChange(TMP_Dropdown myDrop)
+    {
+        //placedPrefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
+
+        if(placedPrefab == null)
+        {
+            Debug.LogError($"Prefab could not be loaded, make sure you check the naming of your prefabs...");
+        }
+        
+        switch(myDrop.value)
+        {
+            case 0:
+                selectionText.text = $"Selected: <color='red'>None</color>";
+                placedPrefab = null;
+            break;
+            case 1:
+                selectionText.text = $"Selected: <color='white'>Apache</color>";
+                placedPrefab = Resources.Load<GameObject>("Prefabs/Apache");
+            break;
+            case 2:
+                selectionText.text = $"Selected: <color='white'>Rafale</color>";
+                placedPrefab = Resources.Load<GameObject>("Prefabs/Dassault Rafale");
+            break;
+            case 3:
+                selectionText.text = $"Selected: <color='white'>Leopard</color>";
+                placedPrefab = Resources.Load<GameObject>("Prefabs/Leo");
+            break;
+            case 4:
+                selectionText.text = $"Selected: <color='white'>M247</color>";
+                placedPrefab = Resources.Load<GameObject>("Prefabs/M247");
+            break;
+            case 5:
+                selectionText.text = $"Selected: <color='white'>Typhoon</color>";
+                placedPrefab = Resources.Load<GameObject>("Prefabs/Typhoon");
+            break;
+        }
     }
 
     public void RemoveObject()
@@ -104,7 +148,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     }
 
 //new additons
-    public void ChangePrefabTo(string prefabName)
+/*    public void ChangePrefabTo(string prefabName)
     {
         placedPrefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
 
@@ -124,8 +168,14 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
             case "Leo":
                 selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
             break;
+            case "Dassault Rafale":
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
+            break;
+            case "M247":
+                selectionText.text = $"Selected: <color='white'>{prefabName}</color>";
+            break;
         }
-    }
+    }*/
 //new additons
 
     private void Dismiss() => welcomePanel.SetActive(false);

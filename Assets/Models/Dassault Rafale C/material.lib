@@ -1,0 +1,44 @@
+# Aspose.3D Wavefront OBJ Exporter
+# Copyright 2004-2021 Aspose Pty Ltd.
+# File created: 08/23/2021 05:45:04
+
+newmtl Material
+	Ka 1 1 1
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 0.75294101238250736 0.75294101238250736 0.75294101238250736
+	Ns 1.74110110501227936
+	map_Kd F:\Dassault Rafale C\Map\Dassault_Rafale_C_P01.png
+	map_Ka F:\Dassault Rafale C\default
+newmtl Material
+	Ka 1 1 1
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 0.75294101238250736 0.75294101238250736 0.75294101238250736
+	Ns 1.74110110501227936
+	map_Kd F:\Dassault Rafale C\Map\Eject_Seat.png
+	map_Ka F:\Dassault Rafale C\default
+newmtl Material
+	Ka 1 1 1
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 0.75294101238250736 0.75294101238250736 0.75294101238250736
+	Ns 1.74110110501227936
+	map_Kd F:\Dassault Rafale C\Map\Pilot_usa.png
+	map_Ka F:\Dassault Rafale C\default
+newmtl Material
+	Ka 1 1 1
+	Kd 1 1 1
+	d 0.5
+	Tr 0.5
+	illum 2
+	Ks 0.75294101238250736 0.75294101238250736 0.75294101238250736
+	Ns 1.74110110501227936
+	map_Kd F:\Dassault Rafale C\Map\Glass_Cockpit.png
+	map_Ka F:\Dassault Rafale C\default
