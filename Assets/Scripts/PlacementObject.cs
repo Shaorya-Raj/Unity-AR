@@ -1,4 +1,4 @@
-using TMPro;
+/*using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,3 +73,4 @@ public class PlacementObject : MonoBehaviour
         canvasComponent?.gameObject.SetActive(IsSelected);
     }
 }
+*/

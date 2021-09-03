@@ -67,7 +67,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    private PlacementObject lastSelectedObject;
+    //private PlacementObject lastSelectedObject;
 
     private GameObject PlacedPrefab 
     {
@@ -140,8 +140,9 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     {
         foreach (GameObject placedObject in Object.FindObjectsOfType<GameObject>()) 
         {
-            /*Destroy(placedObject);*/
+            //Destroy(placedObject);
             placedObject.GetComponent<Renderer>().enabled = false;
+            //placedObject.SetActive(false);
         }             
     }
 
@@ -213,7 +214,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
             {
                 Ray ray = arCamera.ScreenPointToRay(touch.position);
                 RaycastHit hitObject;
-                if(Physics.Raycast(ray, out hitObject))
+                /*if(Physics.Raycast(ray, out hitObject))
                 {
                     lastSelectedObject = hitObject.transform.GetComponent<PlacementObject>();
                     if(lastSelectedObject != null)
@@ -228,15 +229,15 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
                                 placementObject.Selected = true;
                         }
                     }
-                }
+                }*/
                 if(arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
                 {
                     Pose hitPose = hits[0].pose;
 
-                    if(lastSelectedObject == null)
-                    {
+                    //if(placedObject == null)
+                    //{
                         placedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation)/*.GetComponent<PlacementObject>()*/;
-                    }
+                    //}
                 }
             }  
 
@@ -246,11 +247,11 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
                 {
                     Pose hitPose = hits[0].pose;
 
-                    if(lastSelectedObject != null && lastSelectedObject.Selected)
-                    {
+                    //if(placedObject != null /*&& lastSelectedObject.Selected*/)
+                    //{
                         placedObject.transform.parent.position = hitPose.position;
                         placedObject.transform.parent.rotation = hitPose.rotation;
-                    }
+                    //}
                 }
             }
         }
