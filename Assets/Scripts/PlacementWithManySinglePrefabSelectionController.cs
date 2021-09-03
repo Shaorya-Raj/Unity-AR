@@ -42,7 +42,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     private Camera arCamera;
 
     [SerializeField]
-    public TMPro.TMP_Dropdown myDrop;
+    public Dropdown myDrop;
 
     //to scale the object
     //[SerializeField]
@@ -81,7 +81,6 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         }
     }
 
-
     public void Awake() 
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
@@ -99,7 +98,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         removeObject.onClick.AddListener(RemoveObject);
     }
 
-    public void PrefabChange(TMP_Dropdown myDrop)
+    public void PrefabChange(Dropdown myDrop)
     {
         //placedPrefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
 
@@ -139,7 +138,6 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 
     public void RemoveObject()
     {
-
         foreach (GameObject placedObject in Object.FindObjectsOfType<GameObject>()) 
         {
             /*Destroy(placedObject);*/
