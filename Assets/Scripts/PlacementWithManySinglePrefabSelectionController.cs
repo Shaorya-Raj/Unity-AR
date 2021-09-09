@@ -26,6 +26,9 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
 //new additions
 
     [SerializeField]
+    private Button viewInfo;
+
+    [SerializeField]
     private GameObject placedPrefab;
 
     [SerializeField]
@@ -96,6 +99,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         dismissButton.onClick.AddListener(Dismiss);
         //scaleSlider.onValueChanged.AddListener(ScaleChanged);
         removeObject.onClick.AddListener(RemoveObject);
+        viewInfo.onClick.AddListener(delegate{OpenLink(myDrop);});
     }
 
     public void PrefabChange(Dropdown myDrop)
@@ -144,6 +148,53 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
             placedObject.GetComponent<Renderer>().enabled = false;
             //placedObject.SetActive(false);
         }             
+    }
+
+    /*public void OpenLink()
+    {
+        if(selectionText.text == $"Apache")
+        {
+            Application.OpenURL("https://www.army-technology.com/projects/apache/");
+        }
+        else if(selectionText.text == $"Rafale")
+        {
+            Application.OpenURL("https://www.dassault-aviation.com/en/defense/rafale/introduction/");
+        }
+        else if(selectionText.text == $"Leopard")
+        {
+            Application.OpenURL("https://www.army-technology.com/projects/leopard-2-a7-main-battle-tank/");
+        }
+        //else if(selectionText.text == M247)
+        //{
+        //    Application.OpenURL("");
+        //}
+        else if(selectionText.text == $"Typhoon")
+        {
+            Application.OpenURL("https://www.naval-technology.com/projects/ssbn-typhoon-class/");
+        }
+    }*/
+
+    public void OpenLink(Dropdown myDrop)
+    {
+        switch(myDrop.value)
+        {
+            case 0:
+            break;
+            case 1:
+                Application.OpenURL("https://www.army-technology.com/projects/apache/");
+            break;
+            case 2:
+                Application.OpenURL("https://www.dassault-aviation.com/en/defense/rafale/introduction/");
+            break;
+            case 3:
+                Application.OpenURL("https://www.army-technology.com/projects/leopard-2-a7-main-battle-tank/");
+            break;
+            case 4:
+            break;
+            case 5:
+                Application.OpenURL("https://www.naval-technology.com/projects/ssbn-typhoon-class/");
+            break;
+        }
     }
 
 //new additons
