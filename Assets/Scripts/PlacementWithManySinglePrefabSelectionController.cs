@@ -47,6 +47,12 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
     [SerializeField]
     public Dropdown myDrop;
 
+    [SerializeField]
+    private Button displayLabels;
+
+    [SerializeField]
+    private TMP_Text labelText;
+
     //to scale the object
     //[SerializeField]
     //private bool applyScalingPerObject = false;
@@ -99,6 +105,7 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
         dismissButton.onClick.AddListener(Dismiss);
         //scaleSlider.onValueChanged.AddListener(ScaleChanged);
         removeObject.onClick.AddListener(RemoveObject);
+        displayLabels.onClick.AddListener(ToggleLabels);
         viewInfo.onClick.AddListener(delegate{OpenLink(myDrop);});
     }
 
@@ -147,6 +154,25 @@ public class PlacementWithManySinglePrefabSelectionController : MonoBehaviour
             //Destroy(placedObject);
             placedObject.GetComponent<Renderer>().enabled = false;
             //placedObject.SetActive(false);
+        }             
+    }
+
+    public void ToggleLabels()
+    {
+        foreach (GameObject placedObject in Object.FindObjectsOfType<GameObject>()) 
+        {
+            //placedObject.GetComponent<TMPro.TextMeshPro>().enabled = false;
+            foreach (TMPro.TextMeshPro labelText in Object.FindObjectsOfType<TMPro.TextMeshPro>())
+            {
+                if(labelText.GetComponent<Renderer>().enabled)
+                {
+                    labelText.GetComponent<Renderer>().enabled = false;
+                }
+                else if(labelText.GetComponent<Renderer>().enabled == false)
+                {
+                    labelText.GetComponent<Renderer>().enabled = true;
+                }
+            }
         }             
     }
 
